@@ -1,5 +1,7 @@
 # Floricultura Avenida
-> Floricultura-Avenida é um site estático feito em React.js que simula uma loja de flores, todos os dados são salvos em localStorage. 
+> Floricultura-Avenida é um site estático feito em React.js que simula uma loja de flores, todos os dados são salvos em localStorage.
+
+Você pode acessar o site por aqui: https://marce1in.github.io/Floricultura-Avenida/
 
 ## Floricultura avenida tem como objetivo reservar e gerenciar flores é dividida em 3 páginas:
 - Home
