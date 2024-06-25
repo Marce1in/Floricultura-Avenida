@@ -22,14 +22,14 @@ export const floresData =
             id: crypto.randomUUID(),
             nome: "Lírio",
             valor: 1.10,
-            florImg: "https://imagens-revista.vivadecora.com.br/uploads/2018/09/l%C3%ADrios-brancos-Foto-Independent-Agriculture.jpg",
+            florImg: "https://images.tcdn.com.br/img/img_prod/350075/lirio_asiatico_navona_branco_cartela_com_1_bulbo_316_2_11fc8b11f2b0f0035803a16e5f8c409a.jpg",
             idReservado: "777"
         },
         {
             id: crypto.randomUUID(),
             nome: "Cinerária",
             valor: 12.50,
-            florImg: "https://media.istockphoto.com/id/1226261458/pt/foto/close-up-purple-cineraria-flowers.jpg?s=612x612&w=0&k=20&c=5aJam69bOp0EujfrM7YPVNEqqpnb9P4odz7ASuWbbks=",
+            florImg: "https://www.homeit.com.br/wp-content/uploads/2019/04/Ciner%C3%A1ria-1200x675.jpg",
             idReservado: ""
         },
         {
