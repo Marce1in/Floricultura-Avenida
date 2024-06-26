@@ -1,18 +1,41 @@
+/** 
+ * @class Tabela
+ * @summary Representa uma tabela (array de objetos) que é salva no localStorage
+ * 
+ * @description Tabela é uma classe usada para abstrair o uso do localStorage. Com ela é possível localizar, deletar, mudar e adicionar objetos com facilidade a uma array
+ */
 export default class Tabela {
-    /** @type object[]*/
+    /** 
+     * @field Uma array de objetos
+     * @type object[] 
+     */
     #_tabela 
-    /** @type string*/
+    /** 
+     * @field A chave de onde estava salva a tabela
+     * @type string
+     */
     #_localStorageKey 
-    /** @type Function*/
+    /** 
+     * @field usado para funcionar como um hook em react
+     * @summary Transforma a classe Tabela em um hook de react
+     * @type Function
+     * */
     setTabelaHook 
 
-    /** @param {string} LocalStorageKey */
+    /** 
+     * @constructor
+     * 
+     * @param {string} LocalStorageKey - A chave do localStorage onde salva os dados da Tabela
+     */
     constructor(LocalStorageKey){
         this.#_tabela = this.#obterDoLocalStorage(LocalStorageKey)
         this.#_localStorageKey = LocalStorageKey
     }
 
     /**
+     * @method getTabela
+     * @summary Retorna toda tabela (array de objetos)
+     * 
      * @returns object[]
      */
     getTabela(){
@@ -27,6 +50,9 @@ export default class Tabela {
 
     }
     /**
+     * @method setTabela
+     * @summary sobscreve o valor da tabela
+     * 
      * @param {object[]} tabela
      */
     setTabela(tabela){
@@ -35,9 +61,13 @@ export default class Tabela {
 
 
     /**
-     * @param {string} campo
-     * @param {*} valor
-     * @returns {object}
+     * @method encontrarUmPor
+     * @summary Encontra o primeiro objeto na tabela que bater com o {campo: valor}
+     * 
+     * @param {string} campo - O campo da tabela
+     * @param {*} valor - O valor que será usado para localizar o objeto
+     * 
+     * @returns {object} - Retorna o objeto encontrado
      */
     encontrarUmPor(campo, valor){
         let objetoComOValor = {};
@@ -54,9 +84,13 @@ export default class Tabela {
     }
 
     /**
-     * @param {string} campo
-     * @param {*} valor
-     * @returns {object[] | null}
+     * @method encontrarPor
+     * @summary Encontra todos os objetos na tabela que batem com o {campo: valor}
+     *
+     * @param {string} campo - O campo da tabela
+     * @param {*} valor - O valor que será usado para localizar os objetos
+     * 
+     * @returns {object[]} - Retorna uma tabela (array de objetos)
      */
     encontrarPor(campo, valor){
         const objetosComOValor = []
@@ -71,9 +105,14 @@ export default class Tabela {
     }
 
     /**
-     * @param {string} campo
-     * @param {*} valor
-     * @param {object} novosValores
+     * @method mudarPor
+     * @summary Muda os valores dentro de todas colunas da tabela que batem com o {campo: valor}
+     * 
+     * @param {string} campo - O campo da tabela
+     * @param {*} valor - O valor que será usado para localizar os objetos
+     * @param {object} novosValores - Os novos valores para o objeto localizado
+     * 
+     * @returns {void}
      */
     mudarPor(campo, valor, novosValores){
         this.#validarObjeto(novosValores)
@@ -99,8 +138,13 @@ export default class Tabela {
 
 
     /**
-     * @param {string} campo
-     * @param {*} valor
+     * @method deletarPor
+     * @summary Deleta todos objetos dentro da tabela que batem com o {campo: valor} 
+     * 
+     * @param {string} campo - O campo da tabela
+     * @param {*} valor - O campo que será usado para localizar
+     * 
+     * @returns {void}
      */
     deletarPor(campo, valor){
 
@@ -116,7 +160,12 @@ export default class Tabela {
     }
 
     /** 
-     * @param {object} objeto
+     * @method adicionar
+     * @summary Adiciona um objeto a tabela 
+     * 
+     * @param {object} objeto - O objeto que será adicionado, o objeto adicionado precisa ter todos os campos de um objeto de dentro da tabela
+     * 
+     * @returns {void}
      */
     adicionar(objeto){
         this.#validarObjeto(objeto)
@@ -137,14 +186,23 @@ export default class Tabela {
         }
     }
 
+    /**
+     * @method enviarParaLocalStorage
+     * @summary Salva a tabela no localStorage utilizando-se da chave que foi passada na criação da Tabela
+     * 
+     * @returns {void}
+     */
     enviarParaLocalStorage(){
-
         localStorage.setItem(this.#_localStorageKey, JSON.stringify(this.#_tabela))
     }
 
     /**
-     * @param {string} key 
-     * @return {object[]}
+     * @method obterDoLocalStorage
+     * @summary Método privado que retorna a array de objetos que foi salva dentro do localStorage
+     * 
+     * @param {string} key - A chave do localStorage onde está a tabela
+     * 
+     * @return {object[]} - A tabela que está salva localStorage
      */
     #obterDoLocalStorage(key){
         const tabela = JSON.parse(localStorage.getItem(key))
@@ -156,7 +214,12 @@ export default class Tabela {
     }
 
     /**
-     * @param {object} objeto
+     * @method validarObjeto
+     * @summary Valida se os campos do objeto fazem parte dos campos de uma instancia da tabela (objeto)
+     * 
+     * @param {object} objeto - Objeto a ser validado
+     * 
+     * @return {void}
      */
     #validarObjeto(objeto){
         /** @type object*/
@@ -172,8 +235,13 @@ export default class Tabela {
     
 
     /** 
-     * @param {string[]} campos 
-     * @param {string} key 
+     * @method iniciar
+     * @static
+     * 
+     * @summary Inicia uma tabela no LocalStorage
+     * 
+     * @param {string[]} campos - Uma array de strings que nomeia todos os campos que uma coluna na tabela terá. (todos os campos de um objeto dentro da array de tabelas)
+     * @param {string} key - Onde será armazenada a tabela. Declara como se chamará a chave do valor no localStorage
      */
     static iniciar(campos, key){
         const tabela = [{}]
@@ -185,7 +253,9 @@ export default class Tabela {
     }
 
     /**
-    * @function encontrarEmLocalStoragePor
+    * @method encontrarEmLocalStoragePor
+    * @static
+    * 
     * @summary encontra objetos dentro de uma tabela
     *
     * @description Dado um valor, compara esse valor com o campo de cada objeto dentro
