@@ -6,19 +6,19 @@
  */
 export default class Tabela {
     /** 
-     * @field Uma array de objetos
-     * @type object[] 
+     * @field Uma array de objetosUma array de objetos
+     * @type {object[]}
      */
     #_tabela 
     /** 
      * @field A chave de onde estava salva a tabela
-     * @type string
+     * @type {string}
      */
     #_localStorageKey 
     /** 
      * @field usado para funcionar como um hook em react
      * @summary Transforma a classe Tabela em um hook de react
-     * @type Function
+     * @type {Function}
      * */
     setTabelaHook 
 
@@ -36,7 +36,7 @@ export default class Tabela {
      * @method getTabela
      * @summary Retorna toda tabela (array de objetos)
      * 
-     * @returns object[]
+     * @returns {object[]}
      */
     getTabela(){
         const primeiraChave = Object.keys(this.#_tabela[0])[0]
